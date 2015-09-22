@@ -1,0 +1,29 @@
+package k.lei.test;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import k.lei.loader.SubwayLoader;
+import k.lei.printer.SubwayPrinter;
+import k.lei.subway.Connection;
+import k.lei.subway.Subway;
+
+public class SubwayTester {
+	public static void main(String[] args){
+		File subwayFile = new File("bin/k/lei/test", "ObjectvilleSubway.txt");
+		SubwayLoader loader = new SubwayLoader();
+		try {
+			Subway subway = loader.loadFromFile(subwayFile);
+			String startStationName = args[0];
+			String endStationName = args[1];
+			System.out.println(startStationName + " " + endStationName);
+			List<Connection> connections = subway.getDirections(startStationName, endStationName);
+			SubwayPrinter printer = new SubwayPrinter();
+			printer.printDirections(connections);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

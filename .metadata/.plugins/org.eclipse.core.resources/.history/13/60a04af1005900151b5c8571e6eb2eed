@@ -1,0 +1,24 @@
+package k.lei.gsf.unit;
+
+public class UnitTester {
+	public static void main(String[] args){
+		System.out.println("Unit test one...");
+		System.out.println("Create a new Unit of 1234");
+		Unit unit = new Unit(1234);
+		System.out.println("Set type to \"infantry\"");
+		unit.setType("infantry");
+		System.out.println("Set name to \"Adam\"");
+		unit.setName("Adam");
+		System.out.println("Set hitPoints to 23");
+		unit.setProperty("hitPoints", 23);
+		System.out.println("Get unit id: " + unit.getId());
+		System.out.println("Get unit type: " + unit.getType());
+		System.out.println("Get unit name: " + unit.getName());
+		System.out.println("Get unit hitPoints: " + unit.getProperty("hitPoints"));
+		System.out.println("Get unit strength: " + unit.getProperty("strength"));
+	}
+	
+	private static void initialize(){
+		
+	}
+}

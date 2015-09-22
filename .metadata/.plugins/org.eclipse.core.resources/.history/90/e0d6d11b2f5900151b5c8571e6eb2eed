@@ -1,0 +1,25 @@
+package k.lei.gsf.unit;
+
+import java.util.List;
+import java.util.LinkedList;
+
+public class Group {
+	
+	private List units;
+	
+	public Group(){
+		units = new LinkedList();
+	}
+	
+	public void addUnit(Unit unit){
+		units.add(unit);
+	}
+	
+	public Object getUnit(int id){
+		return units.get(id);
+	}
+	
+	public List getUnits(){
+		return units;
+	}
+}

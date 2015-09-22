@@ -1,0 +1,47 @@
+package k.lei.subway;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+public class Subway {
+	
+	private List<Station> stations;
+	private List<Connection> connections;
+	
+	public Subway(){
+		stations = new LinkedList<>();
+		connections = new LinkedList<>();
+	}
+	
+	public void addStation(String stationName){
+		if(!hasStation(stationName)){
+			stations.add(new Station(stationName));
+		}
+	}
+	
+	public boolean hasStation(String stationName){
+		return stations.contains(new Station(stationName));
+	}
+	
+	public void addConnection(String lineName, String station1Name, String station2Name){
+		if(hasStation(station1Name) && hasStation(station2Name)){
+			Station station1 = new Station(station1Name);
+			Station station2 = new Station(station2Name);
+			connections.add(new Connection(lineName, station1, station2));
+			connections.add(new Connection(lineName, station2, station1));
+		}else{
+			throw new RuntimeException("Invalid connectin!");
+		}
+	}
+	
+	public boolean hasConnection(String station1Name, String station2Name){
+		for(Iterator<Connection> i = connections.iterator() ; i.hasNext();){
+			Connection connection = i.next();
+			if(connection.matches(new Station(station1Name), new Station(station2Name))){
+				return true;
+			}
+		}
+		return false;
+	}
+}

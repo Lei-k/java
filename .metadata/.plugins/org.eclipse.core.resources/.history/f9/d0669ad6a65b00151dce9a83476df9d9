@@ -1,0 +1,26 @@
+package k.lei.subway;
+
+public class Connection {
+	
+	private String lineName;
+	private Station station1;
+	private Station station2;
+	
+	public Connection(String lineName, String station1Name, String station2Name){
+		this.lineName = lineName;
+		station1 = new Station(station1Name);
+		station2 = new Station(station2Name);
+	}
+	
+	public Station getStation1(){
+		return station1;
+	}
+	
+	public Station getStation2(){
+		return station2;
+	}
+	
+	public String getLineName(){
+		return lineName;
+	}
+}

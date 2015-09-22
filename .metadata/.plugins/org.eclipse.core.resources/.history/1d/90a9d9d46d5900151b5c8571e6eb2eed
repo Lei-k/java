@@ -1,0 +1,50 @@
+package k.lei.gsf.unit;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+public class Group {
+	
+	private Map<Object, Object> units;
+	
+	public Group(){
+		this(new LinkedList<Object>());
+	}
+	
+	public Group(List<Object> unitList){
+		units = new HashMap<Object, Object>();
+		for(Iterator<Object> i = unitList.iterator() ; i.hasNext() ; ){
+			Unit unit = (Unit)i.next();
+			units.put(unit.getId(), unit);
+		}
+	}
+	
+	public void addUnit(Unit unit){
+		units.put(unit.getId(), unit);
+	}
+	
+	public void removeUnit(int id){
+		units.remove(id);
+	}
+	
+	public void removeUnit(Unit unit){
+		units.remove(unit.getId());
+	}
+	
+	public Object getUnit(int id){
+		return units.get(id);
+	}
+	
+	public List<Object> getUnits(){
+		List<Object> unitList = new LinkedList<Object>();
+		for(Iterator<Entry<Object, Object>> i = units.entrySet().iterator() ; i.hasNext() ;){
+			Unit unit = (Unit)i.next();
+			unitList.add(unit);
+		}
+		return unitList;
+	}
+}

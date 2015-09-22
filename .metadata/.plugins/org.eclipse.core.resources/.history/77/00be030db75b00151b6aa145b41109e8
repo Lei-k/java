@@ -1,0 +1,23 @@
+package k.lei.test;
+
+import java.io.File;
+import java.io.IOException;
+
+import k.lei.loader.SubwayLoader;
+import k.lei.subway.Subway;
+
+public class LoadTester {
+	public static void main(String[] args){
+		File subwayFile = new File("bin/k/lei/test", "ObjectvilleSubway.txt");
+		SubwayLoader loader = new SubwayLoader();
+		try {
+			Subway subway = loader.loadFromFile(subwayFile);
+			System.out.println("Search for Ajax Rapids to HTML Heights connection...");
+			if(subway.hasConnection("Ajax Rapids", "HTML Heights"))
+				System.out.println(subway.getConnection("Ajax Rapids", "HTML Heights"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

@@ -1,0 +1,83 @@
+package k.lei.gsf.unit;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public class Unit {
+	
+	private String type;
+	private int id;
+	private String name;
+	private List weapons;
+	private Map properties;
+	
+	public Unit(int id){
+		this.id = id;
+	}
+	
+	public void setType(String type){
+		this.type = type;
+	}
+	
+	public String getType()
+			throws IllegalAccessException{
+		if(type != null){
+		    return type;
+		}else{
+			throw new IllegalAccessException("The type value is null");
+		}
+	}
+	
+	public int getId(){
+		return id;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+	public String getName()
+	       throws IllegalAccessException{
+		if(name != null){
+		    return name;
+		}else{
+			throw new IllegalAccessException("The name value is null");
+		}
+	}
+	
+	public void addWeapon(Weapon weapon)
+	       throws IllegalAccessException{
+		if(weapon == null){
+			throw new IllegalAccessException("You are add null value");
+		}
+		if(weapons == null){
+			weapons = new LinkedList();
+		}
+		weapons.add(weapon);
+	}
+	
+	public List getWeapons(){
+		return weapons;
+	}
+	
+	public void setProperty(String property, Object value){
+		if(properties == null){
+			properties = new HashMap();
+		}
+		properties.put(property, value);
+	}
+	
+	public Object getProperty(String property){
+		if(property == null){
+			return null;
+		}
+		Object value = properties.get(property);
+		if(value != null){
+			return value;
+		}else{
+			return new String("[no values]");
+		}
+	}
+}

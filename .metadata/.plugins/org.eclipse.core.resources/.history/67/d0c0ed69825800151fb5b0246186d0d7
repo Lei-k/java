@@ -1,0 +1,104 @@
+package k.lei.salary.view;
+
+import java.io.File;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.FileChooser;
+/**
+ * The controller for the root layout. The root layout provides the basic
+ * application layout containing a menu bar and space where other JavaFX
+ * elements can be placed.
+ * 
+ * @author Lei-k;
+ */
+import k.lei.salary.MainApp;
+
+public class RootLayoutController {
+	
+	//Reference to the main application.
+	MainApp mainApp;
+	
+	/**
+	 * Is called by the main application to give a reference back to itself.
+	 * 
+	 * @para mainApp
+	 */
+	public void setMainApp(MainApp mainApp){
+		this.mainApp = mainApp;
+	}
+	
+	@FXML
+	public void handleWorkTimeDialog(){
+		mainApp.showDialog("時間表", "view/WorkTimeDialog.fxml");
+	}
+	
+	@FXML
+	public void handleIndividualCalculateDialog(){
+		mainApp.showDialog("單項計算","view/IndividualCalculateDialog.fxml");
+	}
+	
+	@FXML
+	public void handleAllCalculateDialog(){
+		mainApp.showDialog("總項計算", "view/AllCalculateDialog.fxml");
+	}
+	
+	/**
+	 * Creates an empty salary app.
+	 */
+	@FXML
+	private void handleNew(){
+		mainApp.getWorkData().clear();
+		mainApp.setWorkFilePath(null);
+	}
+	
+	/**
+	 * Opens a FileChooser to let the user select an salary app to load.
+	 */
+	@FXML
+	private void handleOpen(){
+		FileChooser fileChooser = new FileChooser();
+		
+		//Set extension filter
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+				"XML files (*.xml)", "*.xml");
+		fileChooser.getExtensionFilters().add(extFilter);
+		
+		//Show save file dialog
+		File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+		
+		if(file != null){
+			mainApp.loadWorkDataFromFile(file);
+		}
+	}
+	
+	@FXML
+	private void handleSave(){
+		mainApp.handleSave();
+	}
+	
+	@FXML
+	private void handleSaveAs(){
+		mainApp.handleSaveAs();
+	}
+	
+	@FXML
+	private void handleAbout(){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("SalaryApp");
+		alert.setHeaderText("SalaryApp");
+		alert.setContentText("Author: Lei-k\n"
+				+ "Website: https://github.com/Lei-k");
+		
+		alert.showAndWait();
+	}
+	
+	/**
+	 * Closes the application.
+	 */
+	@FXML
+	private void handleExit(){
+		mainApp.handleExit();
+	}
+}
