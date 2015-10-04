@@ -10,7 +10,7 @@ public class SourceViewer {
 		try{
 			//開啟URL供讀取
 			URL u = new URL(args[0]);
-			//以緩衝提昇效能
+			//使用try-with-resource使程式更加簡潔，並以緩衝提昇效能
 			try(InputStream in = new BufferedInputStream(u.openStream())){
 				//將InputStream與Reader串接
 				Reader r = new InputStreamReader(in);
